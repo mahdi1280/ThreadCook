@@ -1,14 +1,16 @@
 public class Main {
     public static void main(String[] args) throws InterruptedException {
         Kitchen kitchen = new Kitchen();
-        Cook cook = kitchen.getCook();
-        System.out.println("customer starting");
-        System.out.println(cook);
-        Cook cook1=kitchen.getCook();
-        System.out.println(cook1);
-        kitchen.getCook();
-        kitchen.releaseCook();
-        kitchen.getCook();
+        CustomerSemaphore customerSemaphore=new CustomerSemaphore();
+        System.out.println("CookStarting");
+        System.out.println("CustomerStarting");
+        System.out.println("MachineStarting");
+        while (true){
+            customerSemaphore.getCustomer();
+            kitchen.getCook();
+            customerSemaphore.releaseCustomer();
+            kitchen.releaseCook();
+        }
 
     }
 }

@@ -9,17 +9,20 @@ public class Kitchen {
 
     public Kitchen() {
         this.cooks = Arrays.asList(new Cook("asd"), new Cook("fd"), new Cook("hg"));
-        System.out.println("CustomerEntered");
+        System.out.println("CookReceivedOrder");
+        System.out.println("MachineStartingFood");
     }
 
     public Cook getCook() throws InterruptedException {
         semaphore.acquire();
-        System.out.println("CustomerPlacedOrder");
+        System.out.println("CookStartedFood");
+        System.out.println("MachineDoneFood");
         return cooks.get(semaphore.availablePermits());
     }
 
     public void releaseCook(){
-        System.out.println("CustomerReceivedOrder");
+        System.out.println("CookFinishedFood");
+        System.out.println("MachineEnding");
         semaphore.release();
     }
 }

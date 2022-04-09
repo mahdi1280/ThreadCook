@@ -9,14 +9,17 @@ public class CustomerSemaphore {
 
     public CustomerSemaphore() {
         this.customers = Arrays.asList(new Customer("ali"), new Customer("veli"), new Customer("ayse"));
+        System.out.println("CustomerEntered");
     }
 
     public Customer getCustomer() throws InterruptedException {
         semaphore.acquire();
+        System.out.println("CustomerPlacedOrder");
         return customers.get(semaphore.availablePermits());
     }
 
-    public void setSemaphore(){
+    public void releaseCustomer(){
+        System.out.println("CustomerReceivedOrder");
         semaphore.release();
     }
 
